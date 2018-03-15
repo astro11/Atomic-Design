@@ -9,6 +9,28 @@ class Breeds extends Component {
     imgUrl: ""
   }
 
+  getBreeds = this.getBreeds.bind(this);
+
+  componentDidMount() {
+    this.getBreeds();
+  }
+
+  getBreeds() {
+    axios.get("https://dog.ceo/api/breeds/list")
+    .then(response => response.data.message)
+    .then(breeds => this.filterBreeds(breeds))
+    .then(filteringBreeds => {
+      this.setState({
+        breeds: this.filteringBreeds
+      });
+      return filteringBreeds;
+    })
+  }
+
+  getFirtstImg(dogs) {
+    let firstDog = dogs[0];
+  }
+ 
   filterBreeds(breeds) {
     const choiceBreeds = {
       hound: "hound",
@@ -20,6 +42,11 @@ class Breeds extends Component {
 
     return breeds.filter(breed => choiceBreeds[breed]);
   }
-}
+  
+  render() {
+    return
+    <Options />
+  }
+} 
 
 export default Breeds;
