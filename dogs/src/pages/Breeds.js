@@ -45,7 +45,8 @@ class Breeds extends Component {
   
   render() {
     return
-    <Options />
+    <Options title=" Dog Breeds" list={this.state.breeds.map(breed => { 
+      return {label: breed, path:`/subbreeds/${breed}`}})} />
   }
 } 
 
